@@ -99,21 +99,39 @@ export const flyInOutTrigger =
         animate('0.3s 0.1s ease', style({
           transform: 'translateX(0)',
           width: '*'
-        })),
-        animate('0.3s ease', style({
-          opacity: 1
-        }))
-      ])
-    ]),
-    transition(':leave', [
-      group([
-        animate('0.3s ease', style({
-          transform: 'translateX(100%)',
-          width: '*'
-        })),
-        animate('0.3s 0.2s ease', style({
-          opacity: 0
-        }))
-      ])
+      })),
+      animate('0.3s ease', style({
+        opacity: 1
+      }))
+    ])
+  ]),
+  transition(':leave', [
+    group([
+      animate('0.3s ease', style({
+        transform: 'translateX(100%)',
+        width: '*'
+      })),
+      animate('0.3s 0.2s ease', style({
+        opacity: 0
+      }))
     ])
   ])
+])
+
+export const shakeTrigger = trigger('shakeAnimation', [
+  transition('* => *', [
+    query('input.ng-invalid:focus, select.ng-invalid:focus', [
+      animate('0.5s', keyframes([
+        style({ border: '2px solid red'}),
+        style({ transform: 'translateX(0)'}),
+        style({ transform: 'translateX(-10px)'}),
+        style({ transform: 'translateX(10px)'}),
+        style({ transform: 'translateX(-10px)'}),
+        style({ transform: 'translateX(10px)'}),
+        style({ transform: 'translateX(-10px)'}),
+        style({ transform: 'translateX(10px)'}),
+        style({ transform: 'translateX(0)'}),
+      ]))
+    ], {optional: true})
+  ])
+])
