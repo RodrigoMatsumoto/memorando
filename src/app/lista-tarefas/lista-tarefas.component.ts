@@ -11,6 +11,7 @@ import {
   highlightedStateTrigger,
   shakeTrigger,
   shownStateTrigger,
+  listStateTrigger
 } from '../animations';
 import { Tarefa } from '../interface/tarefa';
 
@@ -18,7 +19,7 @@ import { Tarefa } from '../interface/tarefa';
   selector: 'app-lista-tarefas',
   templateUrl: './lista-tarefas.component.html',
   styleUrls: ['./lista-tarefas.component.css'],
-  animations: [highlightedStateTrigger, shownStateTrigger, checkButtonTrigger, filterTrigger, formButtonTrigger, flyInOutTrigger, shakeTrigger]
+  animations: [highlightedStateTrigger, shownStateTrigger, checkButtonTrigger, filterTrigger, formButtonTrigger, flyInOutTrigger, shakeTrigger, listStateTrigger]
 })
 
 export class ListaTarefasComponent implements OnInit {
@@ -31,7 +32,7 @@ export class ListaTarefasComponent implements OnInit {
   campoBusca: string = '';
   tarefasFiltradas: Tarefa[] = [];
   tarefasSubscription: Subscription = new Subscription();
-  estadoBotao: string = 'unchecked'
+  estadoBotao: string = 'unchecked';
 
   formulario: FormGroup = this.fomBuilder.group({
     id: [0],
@@ -61,6 +62,7 @@ export class ListaTarefasComponent implements OnInit {
         tarefa.descricao.toLowerCase().includes((this.campoBusca)))
     } else {
       this.tarefasFiltradas = this.listaTarefas;
+
     }
   }
 
